@@ -28,6 +28,7 @@ public class BlackjackGame {
             
             
         }
+        //System.out.println(playingHands.get(seatPosition-1).getIsPlayerHand());
 
         dealer = new DealerHand();
         gameDeck = new Deck();
@@ -209,12 +210,12 @@ public class BlackjackGame {
         
         if( hand.getIsBlackjack() ){ //if the player has a blackjack
         
-            System.out.println( "this should never print" );//consider deleting this whole if statement
+            //System.out.println( "this should never print" );//consider deleting this whole if statement
             return;
         
         }
         if( shouldSplit( hand, dealer ) ){ //can the player split the hand
-            
+            //System.out.println("SPLIT");
             PlayerHand splittedHand = hand.split(); //split the hand and store the new hand in htis variable
             if( hand.getIsPlayerHand() ){
                 splittedHand.togglePlayerStatus();
@@ -274,17 +275,16 @@ public class BlackjackGame {
 
     */
     public void blackjackGame(){
-        int totalHandsPlayed = 0;
-        int sp = seatPosition - 1;
-        for(int i = 0; i<totalHandsPlayed; i++ ){//STOPPED HERE
-            
+        
+        for(int i = 0; i<totalHandsPlayed; i++ ){
+            int sp = seatPosition - 1;
             if( !( gameDeck.topOfDeck < gameDeck.cutCardPosition ) ){//correction!!!!!! if the top of the deck is not less than the cut card position then shuffle--- no else statment because
                 //the only thing you are checking here is if it needs to be shuffled and regardless if it does the other things still need to happen    
                
                 gameDeck.reshuffleDeck();
 
             }
-        
+           
             for( int d = 0; d < playingHands.size(); d++ ){
                 
                 for( int h = 0; h < 2; h++ ){
@@ -292,7 +292,7 @@ public class BlackjackGame {
                     playingHands.get(d).hit(gameDeck.dealCard());
                 
                 }
-                totalHandsPlayed++;
+                //took out the code here that incremented total hands played
             
             }
             
@@ -316,7 +316,7 @@ public class BlackjackGame {
                     //System.out.println(playingHands.get(t).hand.get(0)+" "+playingHands.get(t).hand.get(1));
                     if( playingHands.get(t).getIsBlackjack() && playingHands.get(t).getIsPlayerHand()){
                         
-                        //System.out.println("BLACKJACK");
+                        System.out.println("BLACKJACK");
                         bankroll += (minWager*1.5);
                     
                     }
@@ -328,7 +328,10 @@ public class BlackjackGame {
                 
                 }
                 turn(dealer);
-                while(playingHands.get(sp).getIsPlayerHand()){
+                System.out.println(sp);
+                System.out.println(playingHands.get( sp ).getIsPlayerHand());
+                while(playingHands.get( sp ).getIsPlayerHand()){
+                    System.out.println(sp);
                     if( playingHands.get( sp ).handCount > dealer.handCount ){
                         if(playingHands.get( sp ).getDD()){
                             bankroll += 2 * minWager;
@@ -347,25 +350,31 @@ public class BlackjackGame {
                         }
                         //STOPPED HERE CHECK IF TIHS WORKS ESPECIALLY THE MANAGEMENT OF DOUBLEING DOWN BETS AND REWARDS
                     }
+                    sp++;
                 }
 
-            
+
+                sp = seatPosition - 1;
             }
             dealer.resetHand();
             for( int r = 0; r < playingHands.size(); r++ ){
                 
                 playingHands.get(r).resetHand();
+                if(playingHands.get(r).getIsPlayerHand()){
+                    playingHands.get(r).togglePlayerStatus();
+                }
             
             }
-            while( playingHands.size() > 5 ){
+            while( playingHands.size() > 7 ){
                 
                 playingHands.remove(playingHands.size()-1);
             
             }
+            playingHands.get(seatPosition-1).togglePlayerStatus();////ALL YOU NEED TO DO IS TAKE IT FROM THE TOP, UNDERSTAND THE CODE AND FIGURE OUT WHY THERE IS ONE FALSE EVERY ONCE AND A WHILE AND IF THE CODE IS WORKING CORRECTLY
             
         }
 
-        System.out.println("Total hands played this game "+totalHandsPlayed);
+        System.out.println("Bankroll after playing " + totalHandsPlayed + " hands: $"+bankroll);
     
     }
 
