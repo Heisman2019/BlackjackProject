@@ -34,21 +34,6 @@ public class PlayerHand extends Hand {
             isBlackjack = true;
         }
 
-        /*        hand.add(card);
-        if(card == 1 && handCount+11 <= 21){
-            handCount += 11;
-        }
-        else if(card == 1 && handCount+11 >= 21){
-            handCount += card;
-        }
-        
-        handCount += card;
-        if((handCount == 21)&&(hand.size()<3)){
-            isBlackjack = true;
-        }
-        else if(handCount > 21){
-            bust = true;
-        }*/
     }
     public PlayerHand split(){
         PlayerHand splitHand = new PlayerHand();
@@ -62,7 +47,9 @@ public class PlayerHand extends Hand {
             handCount = handCount - hand.get(1);
             hand.remove(1);
         }
-        
+        if(isPlayerHand == true){
+            splitHand.togglePlayerStatus();
+        }
         return splitHand;
     }
 
