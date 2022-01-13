@@ -299,7 +299,7 @@ public class BlackjackGame {
         for(int i = 0; i<totalHandsPlayed; i++ ){
             
             if(bankroll >= minWager){
-              int sp = seatPosition - 1;
+              int playerControlledHands = seatPosition - 1;
                 if( !( gameDeck.topOfDeck < gameDeck.cutCardPosition ) ){//correction!!!!!! if the top of the deck is not less than the cut card position then shuffle--- no else statment because
                 //the only thing you are checking here is if it needs to be shuffled and regardless if it does the other things still need to happen    
                
@@ -322,7 +322,7 @@ public class BlackjackGame {
             
                 if( dealer.getIsBlackjack() ){
         
-                    if( playingHands.get( sp ).getIsBlackjack() ){
+                    if( playingHands.get( playerControlledHands ).getIsBlackjack() ){
 
                     }
                     else{
@@ -348,10 +348,10 @@ public class BlackjackGame {
                     }
                     turn( dealer );
                 
-                    while( playingHands.get( sp ).getIsPlayerHand() ){
+                    while( playingHands.get( playerControlledHands ).getIsPlayerHand() ){
                     
-                        if( playingHands.get( sp ).handCount > dealer.handCount ){
-                            if( playingHands.get( sp ).getDD() ){
+                        if( playingHands.get( playerControlledHands ).handCount > dealer.handCount ){
+                            if( playingHands.get( playerControlledHands ).getDD() ){
                                 bankroll += 2 * minWager;
                             }
                             else{
@@ -359,8 +359,8 @@ public class BlackjackGame {
                             }
                         
                         }
-                        else if( playingHands.get( sp ).handCount < dealer.handCount ){
-                            if(playingHands.get( sp ).getDD()){
+                        else if( playingHands.get( playerControlledHands ).handCount < dealer.handCount ){
+                            if(playingHands.get( playerControlledHands ).getDD()){
                                 bankroll -= 2 * minWager;
                             }
                             else{
@@ -368,12 +368,13 @@ public class BlackjackGame {
                             }
                         
                         }
-                        sp++;
+                        playerControlledHands++;
                     }
 
 
-                    sp = seatPosition - 1;
+                    playerControlledHands = seatPosition - 1;
                 }
+                
                 dealer.resetHand();
                 for( int r = 0; r < playingHands.size(); r++ ){
                 
@@ -392,10 +393,12 @@ public class BlackjackGame {
               
             }
             else{
+                
                 System.out.println("You do not have enough money to play. In the meantime you played "+(i+1)+" hands.");
-                System.out.println("You have !"+bankroll+" remaining.");
+                System.out.println("You have !"+bankroll+" remaining."); 
                 playedWholeGame = false;
                 break;
+            
             }
             
         }
