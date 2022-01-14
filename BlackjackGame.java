@@ -347,8 +347,8 @@ public class BlackjackGame {
                 
                     }
                     turn( dealer );
-                
-                    while( playingHands.get( playerControlledHands ).getIsPlayerHand() ){
+                    //ERROR when player is seated at seat 7 and does not split a hand, this next line causes an error on the condition where it moves on, because 7 is outside of the arraylist
+                    while( playingHands.get( playerControlledHands ).getIsPlayerHand() && playerControlledHands <=6){
                     
                         if( playingHands.get( playerControlledHands ).handCount > dealer.handCount ){
                             if( playingHands.get( playerControlledHands ).getDD() ){
@@ -374,7 +374,7 @@ public class BlackjackGame {
 
                     playerControlledHands = seatPosition - 1;
                 }
-                
+
                 dealer.resetHand();
                 for( int r = 0; r < playingHands.size(); r++ ){
                 
