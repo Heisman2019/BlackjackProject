@@ -348,28 +348,43 @@ public class BlackjackGame {
                     }
                     turn( dealer );
                     //ERROR when player is seated at seat 7 and does not split a hand, this next line causes an error on the condition where it moves on, because 7 is outside of the arraylist
-                    while( playingHands.get( playerControlledHands ).getIsPlayerHand() && playerControlledHands <=6){
+                    /*
+                    Changes:
+                    added the try catch for index out of boudns exceptions
+                    took out the condition for the if statement "playerControlledHands <= 6"
+                    */
+                    try{
+                        while( playingHands.get( playerControlledHands ).getIsPlayerHand() ){
                     
-                        if( playingHands.get( playerControlledHands ).handCount > dealer.handCount ){
-                            if( playingHands.get( playerControlledHands ).getDD() ){
-                                bankroll += 2 * minWager;
-                            }
-                            else{
-                                bankroll += minWager;
-                            }
+                            if( playingHands.get( playerControlledHands ).handCount > dealer.handCount ){
+                                if( playingHands.get( playerControlledHands ).getDD() ){
+                                    bankroll += 2 * minWager;
+                                    System.out.println("money action");
+                                }
+                                else{
+                                    bankroll += minWager;
+                                    System.out.println("money action");
+                                }
                         
-                        }
-                        else if( playingHands.get( playerControlledHands ).handCount < dealer.handCount ){
-                            if(playingHands.get( playerControlledHands ).getDD()){
-                                bankroll -= 2 * minWager;
                             }
-                            else{
-                                bankroll -= minWager;
-                            }
+                            else if( playingHands.get( playerControlledHands ).handCount < dealer.handCount ){
+                                if(playingHands.get( playerControlledHands ).getDD()){
+                                    bankroll -= 2 * minWager;
+                                    System.out.println("money action");
+                                }
+                                else{
+                                    bankroll -= minWager;
+                                    System.out.println("money action");
+                                }
                         
+                            }
+                            playerControlledHands++;
                         }
-                        playerControlledHands++;
                     }
+                    catch(IndexOutOfBoundsException ex){
+                        //System.out.println("Tried to access a hand at index "+ playerControlledHands +" which is outside of the current list of playable hands.");
+                    }
+                    
 
 
                     playerControlledHands = seatPosition - 1;
