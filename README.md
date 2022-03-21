@@ -1,6 +1,6 @@
 # Blackjack Project
 
-This java program utilizes different objects and classes to simulate a game of blackjack based on the specifications given by the user. This project is the first step in a long term personal project where I would like to build a program that understands Basic Strategy and how to count cards in Black Jack. 
+This java program utilizes different objects and classes to simulate a game of Blackjack based on the specifications given by the user. This project is the first step in a long term personal project where I would like to build a program that understands Basic Strategy and how to count cards in Blackjack. 
 
 ## Features
 
