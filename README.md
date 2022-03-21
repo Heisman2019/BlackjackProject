@@ -1,26 +1,19 @@
 # Blackjack Project
 
-This is an Instagram clone with a custom Parse backend that allows a user to post photos and view a global photos feed.
+This java program utilizes different objects and classes to simulate a game of blackjack based on the specifications given by the user. This project is the first step in a long term personal project where I would like to build a program that understands Basic Strategy and how to count cards in Black Jack. 
 
-Time spent: **5** hours spent in total
+## Features
 
-## User Stories
+The following features have been currently implemented:
 
-The following **required** functionality is completed:
+- User can specify their bankroll, the minimum wager at the table they are playing at, how long they intend on playing, and what seat at the table they would like to take.
+- The simulator currently runs each hand at the table using basic blackjack strategy regardless if it is a player hand or not
+- The dealer hand runs its hand hitting on soft 17.
+- The simulation will stop running when the user no longer has enough money to begin another hand.
+- Sometimes due to doubling down the number of hands in the game will increase, so at the end of the round it will delete all hands until there are 4 normal hands and one other hand that belongs to the player
 
-- [x] User sees app icon in home screen and styled launch screen. (1pt)
-- [x] User can sign up to create a new account. (1pt)
-- [x] User can log in. (1pt)
-- [x] User can take a photo, add a caption, and post it to the server. (3pt)
-- [x] User can view the last 20 posts. (4pts)
+The following features are things I would like to implement in the future:
 
-The following **bonus** features are implemented:
+- add the functionality that would allow the user to decide whether or not they want the simulation to use basic strategy or card counting version of the turn function that takes the player hand as a parameter
+- possibly add a gui that would display the hands as they are played as well as display the players current amount of money
 
-- [ ] User can pull to refresh. (1pt)
-- [ ] User can load past posts infinitely. (2pts)
-
-## Video Walkthrough
-
-Here's a walkthrough of implemented user stories:
-
-![](https://github.com/Heisman2019/Parstagram/blob/main/Gifs/Parstagram1.gif)
