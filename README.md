@@ -17,3 +17,7 @@ The following features are things I would like to implement in the future:
 - add the functionality that would allow the user to decide whether or not they want the simulation to use basic strategy or card counting version of the turn function that takes the player hand as a parameter
 - possibly add a gui that would display the hands as they are played as well as display the players current amount of money
 
+## Current Bugs that will be Fixed
+- Simulation behaves funny when player is using seat 7 (the last seat at the table) 
+- Need to add a condition so that the player doesnt double down when they don't have the money to.
+
